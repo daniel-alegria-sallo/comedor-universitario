@@ -1,7 +1,0 @@
-{
-  "name": "comedor-universitario",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "vue-vite"
-}
