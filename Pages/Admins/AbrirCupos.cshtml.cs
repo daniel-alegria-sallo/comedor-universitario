@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ComedorUniversitario.Pages.AbrirCupos;
+namespace ComedorUniversitario.Pages.Admins;
 
 public class AbrirCuposModel : PageModel
 {
