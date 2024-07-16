@@ -4,5 +4,23 @@
     ViewData["Title"] = "Reportes (Alumnos)";
 }
 <h1>@ViewData["Title"]</h1>
+<br>
+<h2>Lista</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listaReportes)
+        {
+        <tr>
+            <td>@item.fecha</td>
+            <td>@item.estado</td>
+        </tr>
+        }
+    </tbody>
+</table>
 
-<p>Use this page to detail your site's privacy policy.</p>

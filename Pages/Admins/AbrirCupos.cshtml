@@ -1,8 +1,38 @@
 ﻿@page
-@model AtencionModel
+@model AbrirCuposModel
 @{
     ViewData["Title"] = "Abrir Cupos (Administradores)";
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
+<br>
+<a class="btn btn-primary" href="/Alumnos/abrir_inscripciones">Abrir Inscripciones para Cupos</a>
+
+<h2>Lista</h2>
+<!-- TODO -->
+<a class="btn btn-primary btn-sm" href="/Alumnos/aniadir_cupo">Añadir</a> /
+<table class="table">
+    <thead>
+        <tr>
+            <th>Alumno</th>
+            <th>Semestre</th>
+            <th>Carrera Profesional</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.listaCupos)
+        {
+        <tr>
+            <td>@item.alumnoId</td>
+            <td>@item.semestre</td>
+            <td>@item.carrera</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="/Alumnos/eliminar_cupo?id=@item.alumnoId">Eliminar</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

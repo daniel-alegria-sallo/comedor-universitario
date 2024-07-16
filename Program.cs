@@ -1,10 +1,10 @@
-using ComedorUniversitario.Models;
+// using ComedorUniversitario.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<MyDbContext>();
+// builder.Services.AddDbContext<MyDbContext>();
 
 var app = builder.Build();
 
