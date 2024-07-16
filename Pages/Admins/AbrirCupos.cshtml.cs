@@ -19,7 +19,7 @@ public class AbrirCuposModel : PageModel
     {
         try
         {
-            String connectionString = "Server=localhost;Database=DatabaseName;User Id=UserId;Password=1pass;";
+            String connectionString = "Server=localhost;Database=DatabaseName;User Id=id;Password=passw;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -32,8 +32,9 @@ public class AbrirCuposModel : PageModel
                         {
                             Cupo cupo = new Cupo();
                             cupo.alumnoId = "" + reader.GetString(0);
-                            cupo.semestre = "" + reader.GetString(1);
-                            cupo.carrera = "" + reader.GetString(2);
+                            cupo.apellidos = "" + reader.GetString(1);
+                            cupo.nombres = "" + reader.GetString(2);
+                            cupo.semestre = "" + reader.GetString(2);
                             listaCupos.Add(cupo);
                         }
                     }
@@ -51,6 +52,8 @@ public class AbrirCuposModel : PageModel
 public class Cupo
 {
     public String alumnoId;
+    public String apellidos;
+    public String nombres;
     public String semestre;
     public String carrera; // asistio, no asistio
 }

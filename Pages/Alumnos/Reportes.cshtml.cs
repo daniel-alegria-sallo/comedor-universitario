@@ -8,6 +8,10 @@ public class ReportesModel : PageModel
 {
     private readonly ILogger<ReportesModel> _logger;
     public List<Reporte> listaReportes = new List<Reporte>();
+    public String errorMessage = "";
+    public String successMessage = "";
+    public String alumnoId = "";
+
 
     public ReportesModel(ILogger<ReportesModel> logger)
     {
@@ -22,7 +26,7 @@ public class ReportesModel : PageModel
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "SELECT * FROM sp_Reporte(@codAlumno, @codMatricula)";
+                String sql = "SELECT * FROM sp_ReporteGeneral()";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -43,6 +47,44 @@ public class ReportesModel : PageModel
         {
             Console.WriteLine("Exception: " + ex.ToString());
         }
+    }
+
+    public void OnPost()
+    {
+        alumnoId = Request.Form["alumno"];
+        if (alumnoId.Length == 0)
+        {
+            errorMessage = "Falta ingresar el codigo";
+            return;
+        }
+
+        try
+        {
+            String connectionString = "Server=localhost;Database=DatabaseName;User Id=UserId;Password=1pass;";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                String sql = "exec proc_reportes(@codAlumno)";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    command.Parameters.AddWithValue("@codAlumno", alumnoId);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+            return;
+        }
+
+        //
+        alumnoId = "";
+        successMessage = "Proceso Exitoso";
+
+        // Response.Redirect("/Alumnos/Reportes");
+
+
     }
 }
 
