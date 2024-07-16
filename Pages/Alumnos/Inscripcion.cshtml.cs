@@ -37,11 +37,11 @@ public class InscripcionModel : PageModel
         //
         try
         {
-            String connectionString = "Server=localhost;Database=DatabaseName;User Id=UserId;Password=1pass;";
+            String connectionString = "Server=localhost;Database=testdb;User Id=sa;Password=Ce/danielonsql;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "exec proc_inscribir(@codAlumno, @codMatricula)";
+                String sql = "exec proc_inscribir @codAlumno, @codMatricula";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     command.Parameters.AddWithValue("@codAlumno", inscripcion.alumnoId);
