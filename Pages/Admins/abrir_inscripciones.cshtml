@@ -1,0 +1,23 @@
+@page
+@using System.Data.SqlClient;
+@{
+    try
+    {
+        String connectionString = "Server=localhost;Database=DatabaseName;User Id=UserId;Password=1pass;";
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            String sql = "exec proc_abrirInscripciones()";
+            using (SqlCommand command = new SqlCommand(sql, conn))
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("Exception: " + ex.ToString());
+    }
+
+    Response.Redirect("Admins/AbrirCupos");
+}
