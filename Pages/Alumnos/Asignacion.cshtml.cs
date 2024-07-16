@@ -18,7 +18,7 @@ public class AsignacionModel : PageModel
     {
         try
         {
-            String connectionString = "Server=localhost;Database=DatabaseName;User Id=UserId;Password=1pass;";
+            String connectionString = "Server=(local);Database=testdb;User Id=sa;Password=Ce/danielonsql;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();

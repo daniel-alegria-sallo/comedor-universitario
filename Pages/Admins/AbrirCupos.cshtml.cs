@@ -19,7 +19,7 @@ public class AbrirCuposModel : PageModel
     {
         try
         {
-            String connectionString = "Server=localhost;Database=DatabaseName;User Id=id;Password=passw;";
+            String connectionString = "Server=(local);Database=testdb;User Id=sa;Password=Ce/danielonsql;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
