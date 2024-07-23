@@ -1,7 +1,7 @@
 ﻿@page
-@model InscripcionModel
+@model PagosModel
 @{
-    ViewData["Title"] = "Inscripcion (Alumnos)";
+    ViewData["Title"] = "Pagos (Alumnos)";
 }
 <h1>@ViewData["Title"]</h1>
 <br>
@@ -15,15 +15,15 @@
 }
 <form method="POST">
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Cod. Alumno</label>
+        <label class="col-sm-3 col-form-label">Nro De Tarjeta</label>
         <div class="col-sm-6">
-            <input type="text" name="alumno" value="@Model.inscripcion.alumnoId" class="form-control">
+            <input type="text" name="alumno" value="@Model.pago.alumnoId" class="form-control">
         </div>
     </div>
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Cod. Matricula</label>
+        <label class="col-sm-3 col-form-label">Clave</label>
         <div class="col-sm-6">
-            <input type="text" name="codMatricula" value="@Model.inscripcion.codMatricula" class="form-control">
+            <input type="text" name="codMatricula" value="@Model.pago.codMatricula" class="form-control">
         </div>
     </div>
 
@@ -40,7 +40,7 @@
 
     <div class="row mb-3">
         <div class="offset-sm-3 col-sm-3 d-grid">
-            <button type="submit" class="btn btn-primary">Inscribirse</button>
+            <button type="submit" class="btn btn-primary">Pagar</button>
         </div>
         <div class="col-sm-3 d-grid">
             <a class="btn btn-outline-primary" href="/Alumnos/Reportes" role="button">Cancelar</a>

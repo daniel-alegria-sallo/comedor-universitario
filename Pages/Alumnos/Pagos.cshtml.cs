@@ -2,17 +2,16 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 
-namespace ComedorUniversitario.Pages.Admins;
+namespace ComedorUniversitario.Pages.Alumnos;
 
-public class AtencionModel : PageModel
+public class PagosModel : PageModel
 {
-    private readonly ILogger<AtencionModel> _logger;
+    private readonly ILogger<PagosModel> _logger;
     public String errorMessage = "";
-    public String successMessage = "";
-    public Alumno alumno = new Alumno();
+    public String successMessage= "";
+    public Pago pago = new Pago();
 
-
-    public AtencionModel(ILogger<AtencionModel> logger)
+    public PagosModel(ILogger<PagosModel> logger)
     {
         _logger = logger;
     }
@@ -23,13 +22,15 @@ public class AtencionModel : PageModel
 
     public void OnPost()
     {
-        alumno.alumnoId = Request.Form["alumno"];
+        pago.alumnoId = Request.Form["alumno"];
+        pago.codMatricula = Request.Form["codMatricula"];
 
         if (
-                alumno.alumnoId.Length == 0
+                pago.alumnoId.Length == 0
+                || pago.codMatricula.Length == 0
            )
         {
-            errorMessage = "Ingrese el codigo";
+            errorMessage = "Faltan ingresar datos";
             return;
         }
 
@@ -40,10 +41,11 @@ public class AtencionModel : PageModel
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "exec proc_atender(@codAlumno)";
+                String sql = "exec proc_pagar @codAlumno, @codMatricula";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
-                    command.Parameters.AddWithValue("@codAlumno", alumno.alumnoId);
+                    command.Parameters.AddWithValue("@codAlumno", pago.alumnoId);
+                    command.Parameters.AddWithValue("@codMatricula", pago.codMatricula);
                     command.ExecuteNonQuery();
                 }
             }
@@ -55,20 +57,20 @@ public class AtencionModel : PageModel
         }
 
         //
-        alumno.clear();
+        pago.clear();
         successMessage = "Proceso Exitoso";
 
         // Response.Redirect("/Alumnos/Reportes");
     }
-
 }
 
-public class Alumno
+public class Pago
 {
     public String alumnoId;
+    public String codMatricula;
     public void clear()
     {
         alumnoId = "";
+        codMatricula = "";
     }
 }
-
