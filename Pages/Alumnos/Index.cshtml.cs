@@ -14,6 +14,6 @@ public class IndexModel : PageModel
 
     public IActionResult OnGet()
     {
-        return Redirect("Alumnos/Reportes");
+        return Redirect("/Alumnos/Reportes");
     }
 }
