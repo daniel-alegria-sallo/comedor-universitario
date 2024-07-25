@@ -18,6 +18,7 @@ go
 
 Drop Procedure spRealizarReserva;
 go
+
 CREATE PROCEDURE spRealizarReserva (
     @Usuario VARCHAR(50),
     @Contraseña VARCHAR(50)
