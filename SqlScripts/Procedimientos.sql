@@ -4,7 +4,7 @@ go
 Drop Procedure spRegistrarAsistencia;
 go
 
-CREATE PROCEDURE spRegistrarAsistencia
+CREATE PROCEDURE spIncribirEstudiate
     @IdEstudiante VARCHAR(10)
 AS
 BEGIN
@@ -16,26 +16,33 @@ BEGIN
 END;
 go
 
-Drop Procedure spRealizarReserva;
-go
-CREATE PROCEDURE spRealizarReserva (
+CREATE PROCEDURE spIncribirEstudiante(
     @Usuario VARCHAR(50),
-    @Contraseña VARCHAR(50)
+    @Contraseña VARCHAR(50),
+    @Periodo VARCHAR(50)
 )
 AS
 BEGIN
-    -- Verificar si el usuario ya existe en T_Inscrito
+    -- Verificar si existe el Usuario del estudiante
     IF NOT EXISTS (
         SELECT 1
-        FROM T_Inscrito
-        WHERE Id_Estudiante = @Usuario
+        FROM T_Estudiante TE
+        INNER JOIN T_Usuario TU ON TE.Id_Estudiante = TU.Id_Estudiante
+        WHERE @Usuario = TU.Id_Estudiante AND @Contraseña = TU.Contraseña
     )
     BEGIN
-        -- Insertar en T_Inscrito solo si el usuario no existe
-        INSERT INTO T_Inscrito (Id_Estudiante, Apellidos, Nombres)
-        SELECT Id_Estudiante, Apellidos, Nombres
-        FROM T_Estudiante
-        WHERE Id_Estudiante = @Usuario;
+        IF NOT EXISTS (
+            SELECT 1
+            FROM T_Inscrito
+            WHERE @Usuario = Id_Estudiante AND Periodo = @Periodo
+        )
+        BEGIN
+            -- Insertar en T_Inscrito solo si el usuario no existe
+            INSERT INTO T_Inscrito (Id_Estudiante, apellidos, nombres, Periodo)
+            SELECT Id_Estudiante, apellidos, nombres, @Periodo
+            FROM T_Estudiante
+            WHERE Id_Estudiante = @Usuario;
+        END
     END
 END;
-go
+
