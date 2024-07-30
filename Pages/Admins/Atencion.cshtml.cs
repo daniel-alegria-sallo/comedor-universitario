@@ -36,14 +36,14 @@ public class AtencionModel : PageModel
         //
         try
         {
-            String connectionString = "Server=(local);Database=testdb;User Id=sa;Password=Ce/danielonsql;";
+            String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "exec proc_atender(@codAlumno)";
+                String sql = "exec spRegistrarAsistencia @IdEstudiante";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
-                    command.Parameters.AddWithValue("@codAlumno", alumno.alumnoId);
+                    command.Parameters.AddWithValue("@IdEstudiante", alumno.alumnoId);
                     command.ExecuteNonQuery();
                 }
             }

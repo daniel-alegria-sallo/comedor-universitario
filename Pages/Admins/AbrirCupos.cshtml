@@ -7,13 +7,13 @@
     <h1>
         @ViewData["Title"]
     </h1>
-    <a class="btn btn-primary" href="/Alumnos/abrir_inscripciones">Abrir Inscripciones para Cupos</a>
+    <a class="btn btn-primary" href="/Admins/abrir_inscripciones">Abrir Inscripciones para Cupos</a>
 </div>
 <br>
 
 <h2>Lista de Cupados</h2>
 <!-- TODO -->
-<a class="btn btn-primary btn-sm" href="/Alumnos/aniadir_cupo">Añadir</a>
+<a class="btn btn-primary btn-sm" href="/Admins/aniadir_cupo">Añadir</a>
 <table class="table">
     <thead>
         <tr>
@@ -33,7 +33,7 @@
             <td>@item.nombres</td>
             <td>@item.semestre</td>
             <td>
-                <a class="btn btn-primary btn-sm" href="/Alumnos/eliminar_cupo?id=@item.alumnoId">Eliminar</a>
+                <a class="btn btn-primary btn-sm" href="/Admins/eliminar_cupo?id=@item.alumnoId">Eliminar</a>
             </td>
         </tr>
         }
