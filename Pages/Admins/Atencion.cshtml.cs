@@ -56,7 +56,7 @@ public class AtencionModel : PageModel
 
         //
         alumno.clear();
-        successMessage = "Proceso Exitoso";
+        successMessage = "Atencion Exitosa";
 
         // Response.Redirect("/Alumnos/Reportes");
     }

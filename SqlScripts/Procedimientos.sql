@@ -16,7 +16,10 @@ BEGIN
 END;
 go
 
-CREATE PROCEDURE spIncribirEstudiante(
+Drop Procedure spIncribirEstudiante;
+go
+
+CREATE PROCEDURE spIncribirEstudiante (
     @Usuario VARCHAR(50),
     @Contraseña VARCHAR(50),
     @Periodo VARCHAR(50)
