@@ -3,8 +3,7 @@ go
 
 Drop Procedure spRegistrarAsistencia;
 go
-
-CREATE PROCEDURE spIncribirEstudiate
+CREATE PROCEDURE spRegistrarAsistencia
     @IdEstudiante VARCHAR(10)
 AS
 BEGIN
@@ -18,7 +17,6 @@ go
 
 Drop Procedure spIncribirEstudiante;
 go
-
 CREATE PROCEDURE spIncribirEstudiante (
     @Usuario VARCHAR(50),
     @Contraseña VARCHAR(50),
