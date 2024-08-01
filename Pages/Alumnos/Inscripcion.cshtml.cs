@@ -35,30 +35,37 @@ public class InscripcionModel : PageModel
         }
 
         //
+        int rows_modified;
         try
         {
             String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "exec spRealizarReserva @codAlumno, @codMatricula";
+                String sql = "exec spInscribirEstudiante @codAlumno, @codMatricula, @Periodo";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     command.Parameters.AddWithValue("@codAlumno", inscripcion.alumnoId);
                     command.Parameters.AddWithValue("@codMatricula", inscripcion.codMatricula);
-                    command.ExecuteNonQuery();
+                    command.Parameters.AddWithValue("@Periodo", "2024I");
+                    rows_modified = command.ExecuteNonQuery();
                 }
             }
+
+            //
+            inscripcion.clear();
+            if (rows_modified > 0) {
+                successMessage = "Proceso Exitoso";
+            } else {
+                successMessage = "Codigo incorrecto o ya esta inscrito";
+            }
+
         }
         catch (Exception ex)
         {
             errorMessage = ex.Message;
             return;
         }
-
-        //
-        inscripcion.clear();
-        successMessage = "Proceso Exitoso";
 
         // Response.Redirect("/Alumnos/Reportes");
     }

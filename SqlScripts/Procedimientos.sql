@@ -15,21 +15,21 @@ BEGIN
 END;
 go
 
-Drop Procedure spIncribirEstudiante;
+Drop Procedure spInscribirEstudiante;
 go
-CREATE PROCEDURE spIncribirEstudiante (
+CREATE PROCEDURE spInscribirEstudiante (
     @Usuario VARCHAR(50),
-    @Contraseña VARCHAR(50),
+    @contraseña VARCHAR(50),
     @Periodo VARCHAR(50)
 )
 AS
 BEGIN
     -- Verificar si existe el Usuario del estudiante
-    IF NOT EXISTS (
+    IF EXISTS (
         SELECT 1
         FROM T_Estudiante TE
         INNER JOIN T_Usuario TU ON TE.Id_Estudiante = TU.Id_Estudiante
-        WHERE @Usuario = TU.Id_Estudiante AND @Contraseña = TU.Contraseña
+        WHERE @Usuario = TU.Id_Estudiante AND @contraseña = TU.contraseña
     )
     BEGIN
         IF NOT EXISTS (
@@ -45,5 +45,26 @@ BEGIN
             WHERE Id_Estudiante = @Usuario;
         END
     END
+    ELSE
+      Print 'ERROR. Prestatario '+@CodPrestatario+' no existe en las tablas de Prestatarios...';
+    END
+
+
 END;
 
+-- Drop Procedure spPagar;
+-- go
+-- CREATE PROCEDURE spPagar
+--     @IdEstudiante VARCHAR(10)
+-- AS
+-- BEGIN
+--     -- UPDATE T_Asignados WHERE Id_Estudiante = @IdEstudiante
+--
+--     -- IF EXISTS (SELECT 1 FROM T_Seleccionados WHERE Id_Estudiante = @IdEstudiante)
+--     -- BEGIN
+--     --     INSERT INTO T_Matriculados (Id_Estudiante)
+--     --     VALUES (@IdEstudiante);
+--     -- END
+-- END;
+-- go
+--

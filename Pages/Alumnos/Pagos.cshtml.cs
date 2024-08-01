@@ -37,15 +37,15 @@ public class PagosModel : PageModel
         //
         try
         {
-            String connectionString = "Server=(local);Database=testdb;User Id=sa;Password=Ce/danielonsql;";
+            String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "exec proc_pagar @codAlumno, @codMatricula";
+                String sql = "exec spPagar @codAlumno";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     command.Parameters.AddWithValue("@codAlumno", pago.alumnoId);
-                    command.Parameters.AddWithValue("@codMatricula", pago.codMatricula);
+                    // command.Parameters.AddWithValue("@codMatricula", pago.codMatricula);
                     command.ExecuteNonQuery();
                 }
             }
