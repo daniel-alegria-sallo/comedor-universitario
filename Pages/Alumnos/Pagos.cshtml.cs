@@ -9,7 +9,7 @@ public class PagosModel : PageModel
     private readonly ILogger<PagosModel> _logger;
     public String errorMessage = "";
     public String successMessage= "";
-    public Pago pago = new Pago();
+    public Pago pago = new Pago("2024-I");
 
     public PagosModel(ILogger<PagosModel> logger)
     {
@@ -22,12 +22,17 @@ public class PagosModel : PageModel
 
     public void OnPost()
     {
-        pago.alumnoId = Request.Form["alumno"];
+        pago.alumnoId = Request.Query["id"];
+        pago.nro_tarjeta = Request.Form["nro_tarjeta"];
         // pago.codMatricula = Request.Form["codMatricula"];
 
+        if ( pago.alumnoId.Length == 0) {
+            errorMessage = "Post Request: No se cuenta con el codigo del alumno";
+            return;
+        }
         if (
-                pago.alumnoId.Length == 0
-                || pago.codMatricula.Length == 0
+                pago.nro_tarjeta.Length == 0
+                // || pago.codMatricula.Length == 0
            )
         {
             errorMessage = "Faltan ingresar datos";
@@ -41,11 +46,11 @@ public class PagosModel : PageModel
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "exec spPagar @codAlumno";
+                String sql = "INSERT INTO T_Pagos (Id_Estudiante, Periodo) VALUES (@codAlumno, @periodo)";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
-                    command.Parameters.AddWithValue("@codAlumno", pago.alumnoId);
-                    // command.Parameters.AddWithValue("@codMatricula", pago.codMatricula);
+                    command.Parameters.AddWithValue("@codAlumno", pago.nro_tarjeta);
+                    command.Parameters.AddWithValue("@periodo", pago.periodo);
                     command.ExecuteNonQuery();
                 }
             }
@@ -67,10 +72,18 @@ public class PagosModel : PageModel
 public class Pago
 {
     public String alumnoId;
+    public String nro_tarjeta;
     public String codMatricula;
+    public String periodo;
+
+    public Pago (String periodo) {
+        this.periodo = periodo;
+    }
+
     public void clear()
     {
-        alumnoId = "";
+        nro_tarjeta = "";
         codMatricula = "";
     }
+
 }
