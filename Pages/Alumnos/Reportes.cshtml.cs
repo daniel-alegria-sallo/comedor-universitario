@@ -10,7 +10,7 @@ public class ReportesModel : PageModel
     public List<Reporte> listaReportes = new List<Reporte>();
     public String errorMessage = "";
     public String successMessage = "";
-    public String alumnoId = "";
+    public Reporte reporte = new Reporte();
 
 
     public ReportesModel(ILogger<ReportesModel> logger)
@@ -34,7 +34,7 @@ public class ReportesModel : PageModel
                         while (reader.Read())
                         {
                             Reporte reporte = new Reporte();
-                            reporte.id = "" + reader.GetString(0);
+                            reporte.alumnoId = "" + reader.GetString(0);
                             reporte.fecha = "" + reader.GetString(1);
                             reporte.estado = "" + reader.GetString(2);
                             listaReportes.Add(reporte);
@@ -51,10 +51,19 @@ public class ReportesModel : PageModel
 
     public void OnPost()
     {
-        alumnoId = Request.Form["alumno"];
-        if (alumnoId.Length == 0)
+        reporte.alumnoId = Request.Form["alumno"];
+        reporte.periodo = Request.Form["periodo"];
+        reporte.fechaInicial = Request.Form["fechaInicial"];
+        reporte.fechaFinal = Request.Form["fechaFinal"];
+
+        if (
+                reporte.alumnoId.Length == 0 &&
+                reporte.periodo.Length == 0 &&
+                reporte.fechaInicial.Length == 0 &&
+                reporte.fechaFinal.Length == 0
+        )
         {
-            errorMessage = "Falta ingresar el codigo";
+            errorMessage = "Datos faltan, no se filtraron los resultados ";
             return;
         }
 
@@ -67,7 +76,7 @@ public class ReportesModel : PageModel
                 String sql = "exec proc_reportes(@codAlumno)";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
-                    command.Parameters.AddWithValue("@codAlumno", alumnoId);
+                    command.Parameters.AddWithValue("@codAlumno", reporte.alumnoId);
                     command.ExecuteNonQuery();
                 }
             }
@@ -79,19 +88,21 @@ public class ReportesModel : PageModel
         }
 
         //
-        alumnoId = "";
+        reporte.alumnoId = "";
         successMessage = "Proceso Exitoso";
+        reporte.alumnoId = "";
 
         // Response.Redirect("/Alumnos/Reportes");
-
-
     }
 }
 
 public class Reporte
 {
-    public String id;
+    public String alumnoId;
     public String fecha;
     public String estado; // asistio, no asistio
+    public String periodo;
+    public String fechaInicial;
+    public String fechaFinal;
 }
 

@@ -46,7 +46,7 @@ BEGIN
         END
     END
     ELSE
-      Print 'ERROR. Prestatario '+@CodPrestatario+' no existe en las tablas de Prestatarios...';
+      Print 'ERROR. ';
     END
 
 

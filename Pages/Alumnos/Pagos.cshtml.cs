@@ -23,7 +23,7 @@ public class PagosModel : PageModel
     public void OnPost()
     {
         pago.alumnoId = Request.Form["alumno"];
-        pago.codMatricula = Request.Form["codMatricula"];
+        // pago.codMatricula = Request.Form["codMatricula"];
 
         if (
                 pago.alumnoId.Length == 0

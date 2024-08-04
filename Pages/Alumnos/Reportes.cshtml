@@ -25,11 +25,30 @@
 
 <form method="POST">
     <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Cod. Alumno</label>
+        <label class="col-sm-2 col-form-label">Cod. Alumno</label>
         <div class="col-sm-3">
-            <input type="text" name="alumno" value="@Model.alumnoId" class="form-control">
+            <input type="text" name="alumno" value="@Model.reporte.alumnoId" class="form-control">
         </div>
-        <div class="offset-sm-3 col-sm-3 d-grid">
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Periodo</label>
+        <div class="col-sm-3">
+            <input type="text" name="periodo" value="@Model.reporte.periodo" class="form-control">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Fecha Inicial</label>
+        <div class="col-sm-3">
+            <input type="text" name="fechaInicial" value="@Model.reporte.fechaInicial" class="form-control">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Fecha Final</label>
+        <div class="col-sm-3">
+            <input type="text" name="fechaFinal" value="@Model.reporte.fechaFinal" class="form-control">
+        </div>
+        <!-- <div class="offset-sm-3 col-sm-3 d-grid"> -->
+        <div class="col-sm-3 d-grid">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
     </div>
@@ -41,6 +60,7 @@
         <tr>
             <th>Fecha</th>
             <th>Estado</th>
+            <th>Periodo</th>
         </tr>
     </thead>
     <tbody>
@@ -49,6 +69,7 @@
         <tr>
             <td>@item.fecha</td>
             <td>@item.estado</td>
+            <td>@item.periodo</td>
         </tr>
         }
     </tbody>
