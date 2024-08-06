@@ -24,7 +24,7 @@ public class AbrirCuposModel : PageModel
     {
         try
         {
-            String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
+            var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["LocalhostServer"];
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -68,7 +68,7 @@ public class AbrirCuposModel : PageModel
             nroCupos = Int32.Parse(cupos);
             try
             {
-                String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
+                var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["LocalhostServer"];
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();

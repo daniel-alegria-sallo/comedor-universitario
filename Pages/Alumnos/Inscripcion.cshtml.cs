@@ -39,7 +39,8 @@ public class InscripcionModel : PageModel
         int rows_modified;
         try
         {
-            String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
+            var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["LocalhostServer"];
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();

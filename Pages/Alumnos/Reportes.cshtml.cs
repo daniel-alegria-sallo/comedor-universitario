@@ -23,7 +23,7 @@ public class ReportesModel : PageModel
         listaReportes.Clear();
         try
         {
-            String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
+            var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["LocalhostServer"];
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -73,7 +73,7 @@ public class ReportesModel : PageModel
 
         try
         {
-            String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
+            var connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["LocalhostServer"];
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
