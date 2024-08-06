@@ -40,7 +40,7 @@ public class AsignacionModel : PageModel
                     }
                 }
 
-                sql = "SELECT Id_Estudiante FROM T_Inscrito WHERE [Pago] != N'0'";
+                sql = "SELECT Id_Estudiante, Pago FROM T_Inscrito";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -49,21 +49,13 @@ public class AsignacionModel : PageModel
                         {
                             Alumno alumno = new Alumno();
                             alumno.alumnoId = "" + reader.GetString(0);
-                            listaInscritosPagaron.Add(alumno);
-                        }
-                    }
-                }
+                            alumno.pago = "" + reader.GetString(1);
 
-                sql = "SELECT Id_Estudiante FROM T_Inscrito WHERE [Pago] = N'0'";
-                using (SqlCommand command = new SqlCommand(sql, conn))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Alumno alumno = new Alumno();
-                            alumno.alumnoId = "" + reader.GetString(0);
-                            listaInscritos.Add(alumno);
+                            if (alumno.pago != "0") {
+                                listaInscritosPagaron.Add(alumno);
+                            } else if (alumno.pago == "0") {
+                                listaInscritos.Add(alumno);
+                            }
                         }
                     }
                 }
@@ -81,5 +73,6 @@ public class Alumno
 {
     public String alumnoId;
     public String estado; // aceptado, rechazado
+    public String pago;
 }
 
