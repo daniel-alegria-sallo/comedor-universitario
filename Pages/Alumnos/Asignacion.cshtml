@@ -20,7 +20,16 @@
             <td>@item.alumnoId</td>
             <td>
                 Asignado
-                <a class="btn btn-primary btn-sm" href="/Alumnos/Pagos?id=@item.alumnoId">Pagar</a>
+            </td>
+        </tr>
+        }
+        @foreach(var item in Model.listaInscritosPagaron)
+        {
+        <tr>
+            <td>@item.alumnoId</td>
+            <td>
+                Inscrito
+                <a class="btn btn-secondary btn-sm" disabled>Pagado</a>
             </td>
         </tr>
         }
@@ -30,6 +39,7 @@
             <td>@item.alumnoId</td>
             <td>
                 Inscrito
+                <a class="btn btn-primary btn-sm" href="/Alumnos/Pagos?id=@item.alumnoId">Pagar</a>
             </td>
         </tr>
         }

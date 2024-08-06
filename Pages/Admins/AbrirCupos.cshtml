@@ -7,22 +7,61 @@
     <h1>
         @ViewData["Title"]
     </h1>
-    <a class="btn btn-primary" href="/Admins/abrir_inscripciones">Abrir Inscripciones</a>
-    <!-- <a class="btn btn-primary" href="/Admins/abrir_inscripciones">Sortear Cupos</a> -->
-    <!-- <a class="btn btn-primary" href="/Admins/abrir_inscripciones">Abrir Pagos</a> -->
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Inscripciones</label>
+        <div class="col-sm-3">
+            <a class="btn btn-secondary" href="/Admins/abrir_inscripciones">Abrir</a>
+            <a class="btn btn-secondary" href="/Admins/cerrar_inscripciones">Cerrar</a>
+        </div>
+    </div>
+
+    @if(Model.errorMessage.Length > 0) {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>@Model.errorMessage</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+    @if(Model.successMessage.Length > 0) {
+    <div class="row mb-3">
+        <div class="col-sm-9">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@Model.successMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
+    }
+    <form method="POST">
+        <!-- <div class="row mb-3"> -->
+        <!--     <label class="col-sm-2 col-form-label">Periodo</label> -->
+        <!--     <div class="col-sm-3"> -->
+        <!--         <input type="text" name="Semestre" value="@Model.Semestre" class="form-control"> -->
+        <!--     </div> -->
+        <!-- </div> -->
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Nro. de Cupos</label>
+            <div class="col-sm-3">
+                <input type="text" name="nroCupos" value="@Model.nroCupos" class="form-control">
+            </div>
+            <div class="col-sm-3 d-grid">
+                <button type="submit" class="btn btn-primary">Asignar Cupos</button>
+            </div>
+        </div>
+    </form>
 </div>
 <br>
 
-<h2>Lista de Cupados</h2>
+<h2>Lista de Asignados</h2>
 <!-- TODO -->
-<a class="btn btn-primary btn-sm" href="/Admins/aniadir_cupo">Añadir</a>
+<!-- <a class="btn btn-primary btn-sm" href="/Admins/aniadir_cupo">Añadir</a> -->
 <table class="table">
     <thead>
         <tr>
             <th>Alumno</th>
-            <th>Semestre</th>
             <th>Apellidos</th>
             <th>Nombres</th>
+            <th>Semestre</th>
+            <th>Reserva</th>
             <th>Accion</th>
         </tr>
     </thead>
@@ -34,6 +73,7 @@
             <td>@item.apellidos</td>
             <td>@item.nombres</td>
             <td>@item.semestre</td>
+            <td>@item.reserva</td>
             <td>
                 <a class="btn btn-primary btn-sm" href="/Admins/eliminar_cupo?id=@item.alumnoId">Eliminar</a>
             </td>

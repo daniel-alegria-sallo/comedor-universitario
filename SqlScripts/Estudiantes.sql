@@ -1124,5 +1124,21 @@ Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('2101
 204794
 210179*/
 
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+CREATE TABLE [dbo].[T_ThePeriod](
+	[periodo] [varchar](10) NOT NULL,
+    CONSTRAINT PK_T_ThePeriod PRIMARY KEY (periodo)
+)
+GO
+
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+CREATE TABLE [dbo].[T_ControlInscripciones](
+	[abierto] [varchar](10) NOT NULL,
+    CONSTRAINT PK_T_Inscripciones PRIMARY KEY (abierto)
+)
+GO
+
 USE [master]
 ALTER DATABASE [EstudiantesDB] SET  READ_WRITE

@@ -1,8 +1,6 @@
 use EstudiantesDB;
 go
 
-Drop Procedure spRegistrarAsistencia;
-go
 CREATE PROCEDURE spRegistrarAsistencia
     @IdEstudiante VARCHAR(10)
 AS
@@ -15,8 +13,6 @@ BEGIN
 END;
 go
 
-Drop Procedure spInscribirEstudiante;
-go
 CREATE PROCEDURE spInscribirEstudiante (
     @Usuario VARCHAR(50),
     @contraseña VARCHAR(50),
@@ -51,8 +47,6 @@ BEGIN
 END;
 go
 
--- Drop Procedure spPagar;
--- go
 -- CREATE PROCEDURE spPagar
 --     @IdEstudiante VARCHAR(10)
 -- AS
@@ -69,7 +63,7 @@ go
 
 CREATE PROCEDURE InsertarPagadosEnAsignados
     @TotalCupos INT,
-    @Periodo VARCHAR(10)
+    @Periodo VARCHAR(50)
 AS
 BEGIN
     DECLARE @Id_Estudiante VARCHAR(50);
@@ -77,6 +71,10 @@ BEGIN
     DECLARE @nombres VARCHAR(50);
     DECLARE @Id_Reserva INT = 1;
     DECLARE @Contador INT = 0;
+
+    -- DECLARE @Periodo VARCHAR(10);
+    -- SELECT @Periodo=periodo FROM T_ThePeriod;
+
 
     DECLARE CursorInscritos CURSOR FOR
     SELECT Id_Estudiante, apellidos, nombres

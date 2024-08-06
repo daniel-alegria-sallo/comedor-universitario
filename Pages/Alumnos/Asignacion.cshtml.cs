@@ -8,7 +8,8 @@ public class AsignacionModel : PageModel
 {
     private readonly ILogger<AsignacionModel> _logger;
     public List<Alumno> listaAsignados = new List<Alumno>();
-    public List<Alumno> listaInscritos= new List<Alumno>();
+    public List<Alumno> listaInscritos = new List<Alumno>();
+    public List<Alumno> listaInscritosPagaron = new List<Alumno>();
 
     public AsignacionModel(ILogger<AsignacionModel> logger)
     {
@@ -25,7 +26,7 @@ public class AsignacionModel : PageModel
                 conn.Open();
 
                 String sql;
-                sql = "SELECT Id_Estudiante FROM T_Inscrito WHERE [Pago] != N'0'";
+                sql = "SELECT Id_Estudiante FROM T_Asignados";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -35,6 +36,20 @@ public class AsignacionModel : PageModel
                             Alumno alumno = new Alumno();
                             alumno.alumnoId = "" + reader.GetString(0);
                             listaAsignados.Add(alumno);
+                        }
+                    }
+                }
+
+                sql = "SELECT Id_Estudiante FROM T_Inscrito WHERE [Pago] != N'0'";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Alumno alumno = new Alumno();
+                            alumno.alumnoId = "" + reader.GetString(0);
+                            listaInscritosPagaron.Add(alumno);
                         }
                     }
                 }

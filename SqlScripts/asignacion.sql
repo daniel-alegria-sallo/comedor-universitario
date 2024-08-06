@@ -1,5 +1,3 @@
-Drop Procedure spAsignacion;
-go
 CREATE FUNCTION spAsignacion
     @IdEstudiante VARCHAR(10)
 AS

@@ -4,11 +4,11 @@
     try
     {
         String id = Request.Query["id"];
-        String connectionString = "Server=(local);Database=DatabaseName;User Id=sa;Password=Ce/danielonsql;";
+        String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
         using (SqlConnection conn = new SqlConnection(connectionString))
         {
             conn.Open();
-            String sql = "exec proc_eliminarCupo(@alumnoId)";
+            String sql = "DELETE FROM T_Asignados WHERE Id_Estudiante=@alumnoId;  ";
             using (SqlCommand command = new SqlCommand(sql, conn))
             {
                 command.Parameters.AddWithValue("@alumnoId", id);

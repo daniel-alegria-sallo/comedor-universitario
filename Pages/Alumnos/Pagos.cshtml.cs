@@ -24,15 +24,22 @@ public class PagosModel : PageModel
     {
         pago.alumnoId = Request.Query["id"];
         pago.nro_tarjeta = Request.Form["nro_tarjeta"];
+        pago.cod_servicio = Request.Form["cod_servicio"];
+        pago.cvc = Request.Form["cvc"];
+        pago.fv = Request.Form["fv"];
         // pago.codMatricula = Request.Form["codMatricula"];
 
         if ( pago.alumnoId.Length == 0) {
             errorMessage = "Post Request: No se cuenta con el codigo del alumno";
+            Response.Redirect("/Alumnos/Asignacion");
             return;
         }
         if (
                 pago.nro_tarjeta.Length == 0
-                // || pago.codMatricula.Length == 0
+                || pago.nro_tarjeta.Length == 0
+                || pago.cod_servicio.Length == 0
+                || pago.cvc.Length == 0
+                || pago.fv.Length == 0
            )
         {
             errorMessage = "Faltan ingresar datos";
@@ -74,6 +81,10 @@ public class Pago
 {
     public String alumnoId;
     public String nro_tarjeta;
+    public String cod_servicio;
+    public String cvc;
+    public String fv;
+
     public String codMatricula;
     public String periodo;
 
