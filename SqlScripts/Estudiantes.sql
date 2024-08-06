@@ -116,10 +116,11 @@ GO
 SET ANSI_NULLS ON
 SET QUOTED_IDENTIFIER ON
 CREATE TABLE [dbo].[T_Asistencia](
-	[Id_Atencion] [varchar](50) NOT NULL,
+	[Id_Reserva] [varchar](50) NOT NULL,
 	[Id_Estudiante] [varchar](50) NOT NULL,
 	[Fecha] [date] NOT NULL,
- CONSTRAINT [PK_T_Asistencia] PRIMARY KEY CLUSTERED
+	[Periodo] [varchar](50) NOT NULL,
+	CONSTRAINT PK_T_Asistencia PRIMARY KEY (Id_Reserva, Id_estudiante, Periodo)
 (
 	[Id_Atencion] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
@@ -415,35 +416,35 @@ INSERT [dbo].[T_Estudiante] ([Id_Estudiante], [apellidos], [nombres], [semestre]
 INSERT [dbo].[T_Estudiante] ([Id_Estudiante], [apellidos], [nombres], [semestre]) VALUES (N'225421', N'HUANCA-ALCCA', N'JHON WILLIAM', 5)
 
 SET IDENTITY_INSERT [dbo].[T_Inscrito] ON
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (193, N'215780', N'ALEGRIA-MENDOZA', N'JESUS AUGUSTO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (195, N'215783', N'CONDE-SALLO', N'JOHAN MIHAIL', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (196, N'215784', N'CRUZ-YUCRA', N'LUCERO ESMERALDA', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (197, N'215785', N'FERNANDEZ-PUMA', N'SEBASTIAN', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (198, N'215786', N'LEON-MALDONADO', N'JOSE CARLOS', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (199, N'215788', N'PERALTA-OROS', N'KEVIN DANIEL', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (200, N'215791', N'SOTELO-QUISPE', N'JULIO CESAR', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (201, N'215917', N'CHARALLA-CCAMA', N'GIAN FRANCO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (202, N'216061', N'HUILLCA-DIAZ', N'JOSE LUIS', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (203, N'216062', N'MUÑOZ-ROSAS', N'RAMIRO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (204, N'220211', N'HANCCO-VALLE', N'LEO SMITH', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (205, N'220212', N'NOA-ALLER', N'INGRID ROSARIO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (206, N'220213', N'PUMACCAHUA-HUALLPA', N'PATRICK MICHAEL', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (207, N'220214', N'VARGAS-ZEGARRA', N'MARCO ANTONIO AXEL', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (208, N'220547', N'ARANIBAR-ROJAS', N'AXEL BARNABY', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (209, N'220548', N'CASAFRANCA-BENAVIDES', N'ELVIS JAIR', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (210, N'220549', N'LLANCAYA-TAPIA', N'ARACELY', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (211, N'220552', N'QUISPE-CHECYA', N'JOAN GONZALO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (212, N'220553', N'SUPA-CUSIPAUCAR', N'YEFERSON', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (213, N'220554', N'ULLOA-PARQUE', N'FRANK WILDER', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (214, N'220555', N'VILLAVICENCIO-SEGUIL', N'EDU PIERO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (215, N'220610', N'QUISPE-LOCUMBER', N'ALDO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (216, N'220962', N'SALLUCA-CHILE', N'SANDRO ALEXANDER', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (217, N'220963', N'SURCO-CUTIPA', N'LUIS ADRIAN', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (218, N'220964', N'TORRES-BAUTISTA', N'RONIL NILO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (219, N'221443', N'CALDERON-RODRIGUEZ', N'ANDRE ALFREDO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (220, N'221444', N'CCORI-TACO', N'ESMAYDES', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (221, N'221445', N'CHILLIHUANI-HUAMAN', N'RIVALDO FRANCO', "2024-I", "0")
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (234, N'225421', N'HUANCA-ALCCA', N'JHON WILLIAM', "2024-I", "0")
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (193, N'215780', N'ALEGRIA-MENDOZA', N'JESUS AUGUSTO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (195, N'215783', N'CONDE-SALLO', N'JOHAN MIHAIL', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (196, N'215784', N'CRUZ-YUCRA', N'LUCERO ESMERALDA', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (197, N'215785', N'FERNANDEZ-PUMA', N'SEBASTIAN', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (198, N'215786', N'LEON-MALDONADO', N'JOSE CARLOS', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (199, N'215788', N'PERALTA-OROS', N'KEVIN DANIEL', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (200, N'215791', N'SOTELO-QUISPE', N'JULIO CESAR', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (201, N'215917', N'CHARALLA-CCAMA', N'GIAN FRANCO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (202, N'216061', N'HUILLCA-DIAZ', N'JOSE LUIS', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (203, N'216062', N'MUÑOZ-ROSAS', N'RAMIRO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (204, N'220211', N'HANCCO-VALLE', N'LEO SMITH', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (205, N'220212', N'NOA-ALLER', N'INGRID ROSARIO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (206, N'220213', N'PUMACCAHUA-HUALLPA', N'PATRICK MICHAEL', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (207, N'220214', N'VARGAS-ZEGARRA', N'MARCO ANTONIO AXEL', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (208, N'220547', N'ARANIBAR-ROJAS', N'AXEL BARNABY', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (209, N'220548', N'CASAFRANCA-BENAVIDES', N'ELVIS JAIR', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (210, N'220549', N'LLANCAYA-TAPIA', N'ARACELY', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (211, N'220552', N'QUISPE-CHECYA', N'JOAN GONZALO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (212, N'220553', N'SUPA-CUSIPAUCAR', N'YEFERSON', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (213, N'220554', N'ULLOA-PARQUE', N'FRANK WILDER', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (214, N'220555', N'VILLAVICENCIO-SEGUIL', N'EDU PIERO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (215, N'220610', N'QUISPE-LOCUMBER', N'ALDO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (216, N'220962', N'SALLUCA-CHILE', N'SANDRO ALEXANDER', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (217, N'220963', N'SURCO-CUTIPA', N'LUIS ADRIAN', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (218, N'220964', N'TORRES-BAUTISTA', N'RONIL NILO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (219, N'221443', N'CALDERON-RODRIGUEZ', N'ANDRE ALFREDO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (220, N'221444', N'CCORI-TACO', N'ESMAYDES', '2024-I', '0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (221, N'221445', N'CHILLIHUANI-HUAMAN', N'RIVALDO FRANCO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (234, N'225421', N'HUANCA-ALCCA', N'JHON WILLIAM', N'2024-I', N'0')
 
 SET IDENTITY_INSERT [dbo].[T_Inscrito] OFF
 INSERT [dbo].[T_Usuario] ([Id_Estudiante], [Contraseña]) VALUES (N'021501', N'34527322')
@@ -678,8 +679,23 @@ CREATE TABLE T_Pagos (
     CVC varchar(3),
     Fecha date,
     Periodo varchar(50),
-    CONSTRAINT PK_T_Pagos PRIMARY KEY (Id_Pago, Id_Estudiante, Nro_Tarjeta, CVC, Fecha, Periodo)
+    CONSTRAINT PK_T_Pagos PRIMARY KEY (Id_Pago, Id_estudiante, Periodo)
 );
+
+CREATE TABLE [dbo].[T_Asignados](
+    [Id_Estudiante] [varchar](50) NOT NULL,
+    [apellidos] [varchar](50) NOT NULL,
+    [nombres] [varchar](50) NOT NULL,
+    [Id_Reserva] [varchar](50) NOT NULL,
+    [Periodo] [varchar](10) NOT NULL,
+ CONSTRAINT [PK_T_Asignados] PRIMARY KEY CLUSTERED
+(
+    [Id_Estudiante] ASC,
+    [Id_Reserva] ASC,
+    [Periodo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
 USE [master]
 ALTER DATABASE [EstudiantesDB] SET  READ_WRITE

@@ -7,7 +7,8 @@ namespace ComedorUniversitario.Pages.Alumnos;
 public class AsignacionModel : PageModel
 {
     private readonly ILogger<AsignacionModel> _logger;
-    public List<Asignacion> listaAsignaciones = new List<Asignacion>();
+    public List<Alumno> listaAsignados = new List<Alumno>();
+    public List<Alumno> listaInscritos= new List<Alumno>();
 
     public AsignacionModel(ILogger<AsignacionModel> logger)
     {
@@ -18,21 +19,36 @@ public class AsignacionModel : PageModel
     {
         try
         {
-            String connectionString = "Server=(local);Database=testdb;User Id=sa;Password=Ce/danielonsql;";
+            String connectionString = "Server=(local);Database=EstudiantesDB;User Id=sa;Password=Ce/danielonsql;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "SELECT * FROM sp_Reporte(@codAlumno, @codMatricula)";
+
+                String sql;
+                sql = "SELECT Id_Estudiante FROM T_Inscrito WHERE [Pago] != N'0'";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Asignacion asignacion = new Asignacion();
-                            asignacion.alumnoId = "" + reader.GetString(0);
-                            asignacion.estado = "" + reader.GetString(1);
-                            listaAsignaciones.Add(asignacion);
+                            Alumno alumno = new Alumno();
+                            alumno.alumnoId = "" + reader.GetString(0);
+                            listaAsignados.Add(alumno);
+                        }
+                    }
+                }
+
+                sql = "SELECT Id_Estudiante FROM T_Inscrito WHERE [Pago] = N'0'";
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Alumno alumno = new Alumno();
+                            alumno.alumnoId = "" + reader.GetString(0);
+                            listaInscritos.Add(alumno);
                         }
                     }
                 }
@@ -46,7 +62,7 @@ public class AsignacionModel : PageModel
 
 }
 
-public class Asignacion
+public class Alumno
 {
     public String alumnoId;
     public String estado; // aceptado, rechazado

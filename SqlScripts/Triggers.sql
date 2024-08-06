@@ -27,4 +27,6 @@ BEGIN
         ROLLBACK TRANSACTION
 
     END CATCH
-END;
+END
+go
+

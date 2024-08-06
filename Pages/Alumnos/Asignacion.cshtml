@@ -14,11 +14,23 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var item in Model.listaAsignaciones)
+        @foreach(var item in Model.listaAsignados)
         {
         <tr>
             <td>@item.alumnoId</td>
-            <td>@item.estado</td>
+            <td>
+                Asignado
+            </td>
+        </tr>
+        }
+        @foreach(var item in Model.listaInscritos)
+        {
+        <tr>
+            <td>@item.alumnoId</td>
+            <td>
+                Inscrito
+                <a class="btn btn-primary btn-sm" href="/Alumnos/Pagos?id=@item.alumnoId">Pagar</a>
+            </td>
         </tr>
         }
     </tbody>

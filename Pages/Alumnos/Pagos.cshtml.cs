@@ -46,10 +46,11 @@ public class PagosModel : PageModel
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "INSERT INTO T_Pagos (Id_Estudiante, Periodo) VALUES (@codAlumno, @periodo)";
+                String sql = "INSERT INTO T_Pagos (Id_Pago, Id_Estudiante, Periodo) VALUES (@idPago, @codAlumno, @periodo)";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
-                    command.Parameters.AddWithValue("@codAlumno", pago.nro_tarjeta);
+                    command.Parameters.AddWithValue("@idPago", pago.alumnoId+pago.periodo);
+                    command.Parameters.AddWithValue("@codAlumno", pago.alumnoId);
                     command.Parameters.AddWithValue("@periodo", pago.periodo);
                     command.ExecuteNonQuery();
                 }

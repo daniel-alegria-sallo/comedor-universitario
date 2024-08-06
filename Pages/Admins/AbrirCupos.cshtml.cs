@@ -26,6 +26,9 @@ public class AbrirCuposModel : PageModel
                 String sql = "SELECT * FROM sp_Cupo(@codAlumno, @codMatricula)";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
+                    command.Parameters.AddWithValue("@codAlumno", "holdplacer");
+                    command.Parameters.AddWithValue("@codMatricula", "holdplacer");
+
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
