@@ -10,6 +10,7 @@ public class AtencionModel : PageModel
     public String errorMessage = "";
     public String successMessage = "";
     public Alumno alumno = new Alumno();
+    public String Semestre = "2024-I";
 
 
     public AtencionModel(ILogger<AtencionModel> logger)
@@ -40,10 +41,11 @@ public class AtencionModel : PageModel
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "exec spRegistrarAsistencia @IdEstudiante";
+                String sql = "exec spRegistrarAsistencia @IdEstudiante, @Periodo";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     command.Parameters.AddWithValue("@IdEstudiante", alumno.alumnoId);
+                    command.Parameters.AddWithValue("@Periodo", Semestre);
                     command.ExecuteNonQuery();
                 }
             }

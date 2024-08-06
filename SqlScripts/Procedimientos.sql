@@ -2,14 +2,39 @@ use EstudiantesDB;
 go
 
 CREATE PROCEDURE spRegistrarAsistencia
-    @IdEstudiante VARCHAR(10)
+    @Id_Estudiante VARCHAR(20),
+    @Periodo VARCHAR(50)
 AS
 BEGIN
-    IF EXISTS (SELECT 1 FROM T_Inscrito WHERE Id_Estudiante = @IdEstudiante)
-    BEGIN
-        INSERT INTO T_Asistencia (Id_Estudiante, Fecha)
-        VALUES (@IdEstudiante, GETDATE());
-    END
+    DECLARE @IdReserva VARCHAR(20);
+    DECLARE @Fecha Varchar(20) = GETDATE();
+    select @Fecha=convert(varchar, getdate(), 103)
+
+    -- Obtener el Id_Reserva usando la función
+    SET @IdReserva = dbo.fnObtenerIdReserva(@Fecha, @Periodo);
+
+        -- Insertar en la tabla T_Asistencia
+    INSERT INTO T_Asistencia (Id_Estudiante,Fecha, Id_Reserva, Periodo)
+        VALUES (@Id_Estudiante,@Fecha, @IdReserva, @Periodo);
+
+END;
+go
+
+CREATE FUNCTION [dbo].[fnObtenerIdReserva]
+(
+    @Fecha DATE,
+    @Periodo VARCHAR(50)
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @IdReserva VARCHAR(20);
+
+    SELECT @IdReserva = Id_Reserva
+    FROM T_Reserva
+    WHERE @Fecha BETWEEN FechaInicio AND FechaFinal AND Periodo = @Periodo;
+
+    RETURN @IdReserva;
 END;
 go
 

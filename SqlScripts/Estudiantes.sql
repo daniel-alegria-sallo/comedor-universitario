@@ -400,14 +400,14 @@ INSERT [dbo].[T_Estudiante] ([Id_Estudiante], [apellidos], [nombres], [semestre]
 INSERT [dbo].[T_Estudiante] ([Id_Estudiante], [apellidos], [nombres], [semestre]) VALUES (N'225421', N'HUANCA-ALCCA', N'JHON WILLIAM', 5)
 
 SET IDENTITY_INSERT [dbo].[T_Inscrito] ON
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (193, N'215780', N'ALEGRIA-MENDOZA', N'JESUS AUGUSTO', N'2024-I', N'0')
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (195, N'215783', N'CONDE-SALLO', N'JOHAN MIHAIL', N'2024-I', N'0')
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (196, N'215784', N'CRUZ-YUCRA', N'LUCERO ESMERALDA', N'2024-I', N'0')
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (197, N'215785', N'FERNANDEZ-PUMA', N'SEBASTIAN', N'2024-I', N'0')
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (198, N'215786', N'LEON-MALDONADO', N'JOSE CARLOS', N'2024-I', N'0')
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (199, N'215788', N'PERALTA-OROS', N'KEVIN DANIEL', N'2024-I', N'0')
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (200, N'215791', N'SOTELO-QUISPE', N'JULIO CESAR', N'2024-I', N'0')
-INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (201, N'215917', N'CHARALLA-CCAMA', N'GIAN FRANCO', N'2024-I', N'0')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (193, N'215780', N'ALEGRIA-MENDOZA', N'JESUS AUGUSTO', N'2024-I', N'1')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (195, N'215783', N'CONDE-SALLO', N'JOHAN MIHAIL', N'2024-I', N'1')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (196, N'215784', N'CRUZ-YUCRA', N'LUCERO ESMERALDA', N'2024-I', N'1')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (197, N'215785', N'FERNANDEZ-PUMA', N'SEBASTIAN', N'2024-I', N'1')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (198, N'215786', N'LEON-MALDONADO', N'JOSE CARLOS', N'2024-I', N'1')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (199, N'215788', N'PERALTA-OROS', N'KEVIN DANIEL', N'2024-I', N'1')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (200, N'215791', N'SOTELO-QUISPE', N'JULIO CESAR', N'2024-I', N'1')
+INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (201, N'215917', N'CHARALLA-CCAMA', N'GIAN FRANCO', N'2024-I', N'1')
 INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (202, N'216061', N'HUILLCA-DIAZ', N'JOSE LUIS', N'2024-I', N'0')
 INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (203, N'216062', N'MUÑOZ-ROSAS', N'RAMIRO', N'2024-I', N'0')
 INSERT [dbo].[T_Inscrito] ([Id_inscrito], [Id_Estudiante], [apellidos], [nombres], [periodo], [pago]) VALUES (204, N'220211', N'HANCCO-VALLE', N'LEO SMITH', N'2024-I', N'0')
@@ -1139,6 +1139,21 @@ CREATE TABLE [dbo].[T_ControlInscripciones](
     CONSTRAINT PK_T_Inscripciones PRIMARY KEY (abierto)
 )
 GO
+
+CREATE TABLE [dbo].[T_Reserva](
+    [Id_Reserva] [varchar](50) NOT NULL,
+    [FechaInicio] [date] NOT NULL,
+    [FechaFinal] [date] NOT NULL,
+    [Periodo] [varchar](10) NULL,
+    [Semana] [varchar](5) NULL,
+ CONSTRAINT [PK_T_Reserva] PRIMARY KEY CLUSTERED
+(
+    [Id_Reserva] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+INSERT [dbo].[T_Reserva] ([Id_Reserva], [FechaInicio], [FechaFinal], [Periodo]) VALUES (N'1', '03/08/2024', '09/08/2024', N'2024-I')
 
 USE [master]
 ALTER DATABASE [EstudiantesDB] SET  READ_WRITE
