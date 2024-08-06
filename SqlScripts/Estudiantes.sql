@@ -79,24 +79,6 @@ CREATE TABLE [dbo].[T_Usuario](
 	ON [PRIMARY]
 GO
 
-/****** Object:  UserDefinedFunction [dbo].[fnValidarUsuarioYRecuperarDatos]    Script Date: 16/07/2024 8:29:45 ******/
-SET ANSI_NULLS ON
-SET QUOTED_IDENTIFIER ON
-CREATE FUNCTION [dbo].[fnValidarUsuarioYRecuperarDatos] (
-    @Usuario VARCHAR(50),
-    @Contraseña VARCHAR(50)
-)
-RETURNS TABLE
-AS
-RETURN
-(
-    SELECT e.Id_Estudiante, e.Apellidos, e.Nombres
-    FROM T_Usuario r
-    INNER JOIN T_estudiante e ON r.Id_Estudiante = e.Id_Estudiante
-    WHERE r.Id_Estudiante= @Usuario AND r.Contraseña = @Contraseña
-);
-GO
-
 /****** Object:  Table [dbo].[T_Administradores]    Script Date: 16/07/2024 8:29:45 ******/
 SET ANSI_NULLS ON
 SET QUOTED_IDENTIFIER ON
@@ -120,9 +102,11 @@ CREATE TABLE [dbo].[T_Asistencia](
 	[Id_Estudiante] [varchar](50) NOT NULL,
 	[Fecha] [date] NOT NULL,
 	[Periodo] [varchar](50) NOT NULL,
-	CONSTRAINT PK_T_Asistencia PRIMARY KEY (Id_Reserva, Id_estudiante, Periodo)
+	CONSTRAINT PK_T_Asistencia PRIMARY KEY CLUSTERED
 (
-	[Id_Atencion] ASC
+	[Id_Reserva] ASC,
+	[Id_Estudiante] ASC,
+	[Periodo] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -696,6 +680,449 @@ CREATE TABLE [dbo].[T_Asignados](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+/*Es 22 L 23 M 24 M 25 J 26 V*/
+/*Alumnos que fueron la semana del 3 al 7 de junio */
+/*Para el alumno 021501*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150103062024','021501','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150104062024','021501','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150105062024','021501','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150106062024','021501','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150107062024','021501','07/06/2024','2024-I');
+/*Para el alumno 101659*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165903062024','101659','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165904062024','101659','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165905062024','101659','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165906062024','101659','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165907062024','101659','07/06/2024','2024-I');
+/*Para el alumno 103647*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364703062024','103647','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364704062024','103647','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364705062024','103647','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364706062024','103647','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364707062024','103647','07/06/2024','2024-I');
+/*Para el alumno 120893*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089303062024','120893','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089304062024','120893','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089305062024','120893','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089306062024','120893','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089307062024','120893','07/06/2024','2024-I');
+/*Para el alumno 133962*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396203062024','133962','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396204062024','133962','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396205062024','133962','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396206062024','133962','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396207062024','133962','07/06/2024','2024-I');
+/*Para el alumno 141000*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100003062024','141000','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100004062024','141000','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100005062024','141000','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100006062024','141000','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100007062024','141000','07/06/2024','2024-I');
+/*Para el alumno 160696*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069603062024','160696','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069604062024','160696','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069605062024','160696','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069606062024','160696','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069607062024','160696','07/06/2024','2024-I');
+/*Para el alumno 225417*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541703062024','225417','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541704062024','225417','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541705062024','225417','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541706062024','225417','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541707062024','225417','07/06/2024','2024-I');
+/*Para el alumno 225421*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542103062024','225421','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542104062024','225421','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542105062024','225421','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542106062024','225421','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542107062024','225421','07/06/2024','2024-I');
+/*Para el alumno 200946*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094603062024','200946','03/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094604062024','200946','04/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094605062024','200946','05/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094606062024','200946','06/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094607062024','200946','07/06/2024','2024-I');
+
+/*Alumnos que fueron la semana del 10 al 14 de junio */
+/*Para el alumno 021501*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150110062024','021501','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150111062024','021501','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150112062024','021501','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150113062024','021501','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('02150114062024','021501','14/06/2024','2024-I');
+/*Para el alumno 101659*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165910062024','101659','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165911062024','101659','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165912062024','101659','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165913062024','101659','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165914062024','101659','14/06/2024','2024-I');
+/*Para el alumno 103647*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364710062024','103647','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364711062024','103647','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364712062024','103647','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364713062024','103647','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10364714062024','103647','14/06/2024','2024-I');
+/*Para el alumno 120893*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089310062024','120893','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089311062024','120893','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089312062024','120893','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089313062024','120893','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('12089314062024','120893','14/06/2024','2024-I');
+/*Para el alumno 133962*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396210062024','133962','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396211062024','133962','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396212062024','133962','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396213062024','133962','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13396214062024','133962','14/06/2024','2024-I');
+/*Para el alumno 141000*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100010062024','141000','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100011062024','141000','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100012062024','141000','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100013062024','141000','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14100014062024','141000','14/06/2024','2024-I');
+/*Para el alumno 160696*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069610062024','160696','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069611062024','160696','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069612062024','160696','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069613062024','160696','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16069614062024','160696','14/06/2024','2024-I');
+/*Para el alumno 225417*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541710062024','225417','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541711062024','225417','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541712062024','225417','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541713062024','225417','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22541714062024','225417','14/06/2024','2024-I');
+/*Para el alumno 225421*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542110062024','225421','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542111062024','225421','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542112062024','225421','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542113062024','225421','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22542114062024','225421','14/06/2024','2024-I');
+/*Para el alumno 200946*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094610062024','200946','10/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094611062024','200946','11/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094612062024','200946','12/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094613062024','200946','13/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20094614062024','200946','14/06/2024','2024-I');
+
+/*Alumnos que fueron la semana del 17 al 21 de junio */
+/*Para el alumno 110071*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007117062024','110071','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007118062024','110071','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007119062024','110071','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007120062024','110071','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007121062024','110071','21/06/2024','2024-I');
+/*Para el alumno 113547*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354717062024','113547','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354718062024','113547','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354719062024','113547','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354720062024','113547','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354721062024','113547','21/06/2024','2024-I');
+/*Para el alumno 140997*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099717062024','140997','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099718062024','140997','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099719062024','140997','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099720062024','140997','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099721062024','140997','21/06/2024','2024-I');
+/*Para el alumno 164246*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424617062024','164246','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424618062024','164246','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424619062024','164246','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424620062024','164246','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424621062024','164246','21/06/2024','2024-I');
+/*Para el alumno 184197*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419717062024','184197','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419718062024','184197','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419719062024','184197','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419720062024','184197','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419721062024','184197','21/06/2024','2024-I');
+/*Para el alumno 210928*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092817062024','210928','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092818062024','210928','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092819062024','210928','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092820062024','210928','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092821062024','210928','21/06/2024','2024-I');
+/*Para el alumno 216062*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606217062024','216062','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606218062024','216062','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606219062024','216062','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606220062024','216062','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606221062024','216062','21/06/2024','2024-I');
+/*Para el alumno 222067*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206717062024','222067','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206718062024','222067','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206719062024','222067','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206720062024','222067','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206721062024','222067','21/06/2024','2024-I');
+/*Para el alumno 221448*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144817062024','221448','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144818062024','221448','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144819062024','221448','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144820062024','221448','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144821062024','221448','21/06/2024','2024-I');
+/*Para el alumno 215786*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578617062024','215786','17/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578618062024','215786','18/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578619062024','215786','19/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578620062024','215786','20/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578621062024','215786','21/06/2024','2024-I');
+
+/*Alumnos que fueron la semana del 24 al 28 de junio */
+/*Para el alumno 110071*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007124062024','110071','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007125062024','110071','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007126062024','110071','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007127062024','110071','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11007128062024','110071','28/06/2024','2024-I');
+/*Para el alumno 113547*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354724062024','113547','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354725062024','113547','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354726062024','113547','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354727062024','113547','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11354728062024','113547','28/06/2024','2024-I');
+/*Para el alumno 140997*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099724062024','140997','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099725062024','140997','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099726062024','140997','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099727062024','140997','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14099728062024','140997','28/06/2024','2024-I');
+/*Para el alumno 164246*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424624062024','164246','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424625062024','164246','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424626062024','164246','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424627062024','164246','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424628062024','164246','28/06/2024','2024-I');
+
+/*Para el alumno 184197*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419724062024','184197','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419725062024','184197','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419726062024','184197','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419727062024','184197','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18419728062024','184197','28/06/2024','2024-I');
+/*Para el alumno 210928*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092824062024','210928','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092825062024','210928','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092826062024','210928','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092827062024','210928','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21092828062024','210928','28/06/2024','2024-I');
+/*Para el alumno 216062*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606224062024','216062','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606225062024','216062','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606226062024','216062','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606227062024','216062','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21606228062024','216062','28/06/2024','2024-I');
+/*Para el alumno 222067*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206724062024','222067','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206725062024','222067','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206726062024','222067','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206727062024','222067','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22206728062024','222067','28/06/2024','2024-I');
+/*Para el alumno 221448*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144824062024','221448','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144825062024','221448','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144826062024','221448','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144827062024','221448','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('22144828062024','221448','28/06/2024','2024-I');
+/*Para el alumno 215786*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578624062024','215786','24/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578625062024','215786','25/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578626062024','215786','26/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578627062024','215786','27/06/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21578628062024','215786','28/06/2024','2024-I');
+
+/*Alumnos que fueron la semana del 1 al 5 de julio */
+/*Para el alumno 101658*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165801072024','101658','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165802072024','101658','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165803072024','101658','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165804072024','101658','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165805072024','101658','05/07/2024','2024-I');
+/*Para el alumno 111864*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186401072024','111864','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186402072024','111864','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186403072024','111864','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186404072024','111864','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186405072024','111864','05/07/2024','2024-I');
+/*Para el alumno 143833*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383301072024','143833','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383302072024','143833','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383303072024','143833','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383304072024','143833','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383305072024','143833','05/07/2024','2024-I');
+/*Para el alumno 182935*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293501072024','182935','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293502072024','182935','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293503072024','182935','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293504072024','182935','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293505072024','182935','05/07/2024','2024-I');
+/*Para el alumno 184213*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421301072024','184213','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421302072024','184213','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421303072024','184213','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421304072024','184213','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421305072024','184213','05/07/2024','2024-I');
+/*Para el alumno 192426*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242601072024','192426','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242602072024','192426','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242603072024','192426','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242604072024','192426','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242605072024','192426','05/07/2024','2024-I');
+/*Para el alumno 200781*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078101072024','200781','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078102072024','200781','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078103072024','200781','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078104072024','200781','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078105072024','200781','05/07/2024','2024-I');
+/*Para el alumno 204796*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479601072024','204796','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479602072024','204796','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479603072024','204796','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479604072024','204796','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479605072024','204796','05/07/2024','2024-I');
+/*Para el alumno 210919*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091901072024','210919','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091902072024','210919','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091903072024','210919','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091904072024','210919','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091905072024','210919','05/07/2024','2024-I');
+/*Para el alumno 210936*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093601072024','210936','01/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093602072024','210936','02/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093603072024','210936','03/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093604072024','210936','04/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093605072024','210936','05/07/2024','2024-I');
+
+/*Alumnos que fueron la semana del 8 al 12 de julio */
+/*Para el alumno 101658*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165808072024','101658','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165809072024','101658','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165810072024','101658','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165811072024','101658','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('10165812072024','101658','12/07/2024','2024-I');
+/*Para el alumno 111864*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186408072024','111864','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186409072024','111864','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186410072024','111864','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186411072024','111864','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('11186412072024','111864','12/07/2024','2024-I');
+/*Para el alumno 143833*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383308072024','143833','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383309072024','143833','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383310072024','143833','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383311072024','143833','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14383312072024','143833','12/07/2024','2024-I');
+/*Para el alumno 182935*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293508072024','182935','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293509072024','182935','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293510072024','182935','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293511072024','182935','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18293512072024','182935','12/07/2024','2024-I');
+/*Para el alumno 184213*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421308072024','184213','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421309072024','184213','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421310072024','184213','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421311072024','184213','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('18421312072024','184213','12/07/2024','2024-I');
+/*Para el alumno 192426*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242608072024','192426','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242609072024','192426','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242610072024','192426','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242611072024','192426','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242612072024','192426','12/07/2024','2024-I');
+/*Para el alumno 200781*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078108072024','200781','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078109072024','200781','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078110072024','200781','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078111072024','200781','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20078112072024','200781','12/07/2024','2024-I');
+/*Para el alumno 204796*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479608072024','204796','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479609072024','204796','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479610072024','204796','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479611072024','204796','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479612072024','204796','12/07/2024','2024-I');
+/*Para el alumno 210919*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091908072024','210919','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091909072024','210919','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091910072024','210919','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091911072024','210919','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21091912072024','210919','12/07/2024','2024-I');
+/*Para el alumno 210936*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093608072024','210936','08/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093609072024','210936','09/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093610072024','210936','10/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093611072024','210936','11/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21093612072024','210936','12/07/2024','2024-I');
+
+/*Alumnos que fueron la semana del 15 al 19 de julio */
+/*Para el alumno 093178*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('09317815072024','093178','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('09317816072024','093178','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('09317817072024','093178','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('09317818072024','093178','18/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('09317819072024','093178','19/07/2024','2024-I');
+/*Para el alumno 134403*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13440315072024','134403','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13440316072024','134403','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13440317072024','134403','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13440318072024','134403','18/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('13440319072024','134403','19/07/2024','2024-I');
+/*Para el alumno 141599*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14159915072024','141599','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14159916072024','141599','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14159917072024','141599','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14159918072024','141599','18/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('14159919072024','141599','19/07/2024','2024-I');
+/*Para el alumno 164244*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424416072024','164244','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('16424418072024','164244','18/07/2024','2024-I');
+/*Para el alumno 175101*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('17510115072024','175101','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('17510116072024','175101','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('17510117072024','175101','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('17510118072024','175101','18/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('17510119072024','175101','19/07/2024','2024-I');
+/*Para el alumno 192420*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242015072024','192420','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242016072024','192420','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242017072024','192420','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242018072024','192420','18/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19242019072024','192420','19/07/2024','2024-I');
+/*Para el alumno 194892*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19489215072024','194892','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19489216072024','194892','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19489217072024','194892','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19489218072024','194892','18/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('19489219072024','194892','19/07/2024','2024-I');
+/*Para el alumno 200878*/
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20087815072024','200878','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20087816072024','200878','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20087817072024','200878','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20087818072024','200878','18/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20087819072024','200878','19/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479415072024','204794','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479416072024','204794','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479417072024','204794','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479418072024','204794','18/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('20479419072024','204794','19/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21017915072024','210179','15/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21017916072024','210179','16/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21017917072024','210179','17/07/2024','2024-I');
+Insert Into T_Asistencia (Id_Reserva,Id_Estudiante,Fecha,Periodo)  values ('21017918072024','210179','18/07/2024','2024-I');
+
+/*Falta para la semana 22 al 26*/
+/*Para el alumn
+093178
+134403
+141599
+164244
+175101
+192420
+194892
+200878
+204794
+210179*/
 
 USE [master]
 ALTER DATABASE [EstudiantesDB] SET  READ_WRITE

@@ -10,4 +10,6 @@ go
 go
 :r Triggers.sql
 go
+:r Functions.sql
+go
 

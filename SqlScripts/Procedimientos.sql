@@ -44,13 +44,11 @@ BEGIN
             FROM T_Estudiante
             WHERE Id_Estudiante = @Usuario;
         END
-    END
     ELSE
-      Print 'ERROR. ';
+      Print 'ERROR. '
     END
-
-
 END;
+go
 
 -- Drop Procedure spPagar;
 -- go
