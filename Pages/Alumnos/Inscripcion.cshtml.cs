@@ -42,12 +42,13 @@ public class InscripcionModel : PageModel
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                String sql = "exec spInscribirEstudiante @codAlumno, @codMatricula, @Periodo";
+                String sql = "exec spInscribirEstudiante @codAlumno, @codMatricula, @Periodo, @Pago";
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
                     command.Parameters.AddWithValue("@codAlumno", inscripcion.alumnoId);
                     command.Parameters.AddWithValue("@codMatricula", inscripcion.codMatricula);
-                    command.Parameters.AddWithValue("@Periodo", "2024I");
+                    command.Parameters.AddWithValue("@Periodo", "2024-I");
+                    command.Parameters.AddWithValue("@Pago", "0");
                     rows_modified = command.ExecuteNonQuery();
                 }
             }

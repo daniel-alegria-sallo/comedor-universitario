@@ -48,18 +48,26 @@
             <input type="text" name="fechaFinal" value="@Model.reporte.fechaFinal" class="form-control">
         </div>
         <!-- <div class="offset-sm-3 col-sm-3 d-grid"> -->
+        <!-- <div class="col-sm-3 d-grid"> -->
+        <!--     <button type="submit" class="btn btn-primary">Buscar</button> -->
+        <!-- </div> -->
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label"></label>
         <div class="col-sm-3 d-grid">
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
     </div>
 </form>
 
+<div class="row mb-3">
 <h2>Lista</h2>
 <table class="table">
     <thead>
         <tr>
+            <th>Codigo</th>
             <th>Fecha</th>
-            <th>Estado</th>
+            <!-- <th>Estado</th> -->
             <th>Periodo</th>
         </tr>
     </thead>
@@ -67,8 +75,9 @@
         @foreach(var item in Model.listaReportes)
         {
         <tr>
+            <td>@item.alumnoId</td>
             <td>@item.fecha</td>
-            <td>@item.estado</td>
+            <!-- <td>@item.estado</td> -->
             <td>@item.periodo</td>
         </tr>
         }
