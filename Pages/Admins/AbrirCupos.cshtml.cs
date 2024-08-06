@@ -11,7 +11,7 @@ public class AbrirCuposModel : PageModel
     public String successMessage= "";
     public List<Cupo> listaCupos = new List<Cupo>();
     public int nroCupos;
-    public String Semestre;
+    public String Semestre = "2024-I";
 
 
 
@@ -56,7 +56,7 @@ public class AbrirCuposModel : PageModel
     public void OnPost()
     {
         String? cupos = Request.Form["nroCupos"];
-        Semestre = Request.Form["Semestre"];
+        // Semestre = Request.Form["Semestre"];
 
         if ( cupos.Length == 0 || Semestre.Length == 0) {
             errorMessage = "Post Request: Faltan Datos";
@@ -89,7 +89,7 @@ public class AbrirCuposModel : PageModel
                     using (SqlCommand command = new SqlCommand(sql, conn))
                     {
                         command.Parameters.AddWithValue("@TotalCupos", nroCupos);
-                        command.Parameters.AddWithValue("@Periodo", "2024-I");
+                        command.Parameters.AddWithValue("@Periodo", Semestre);
                         command.ExecuteNonQuery();
                     }
                 }

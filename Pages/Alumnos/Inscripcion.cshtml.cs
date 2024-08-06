@@ -10,6 +10,7 @@ public class InscripcionModel : PageModel
     public String errorMessage = "";
     public String successMessage= "";
     public Inscripcion inscripcion = new Inscripcion();
+    public String Semestre = "2024-I";
 
     public InscripcionModel(ILogger<InscripcionModel> logger)
     {
@@ -47,7 +48,7 @@ public class InscripcionModel : PageModel
                 {
                     command.Parameters.AddWithValue("@codAlumno", inscripcion.alumnoId);
                     command.Parameters.AddWithValue("@codMatricula", inscripcion.codMatricula);
-                    command.Parameters.AddWithValue("@Periodo", "2024-I");
+                    command.Parameters.AddWithValue("@Periodo", Semestre);
                     command.Parameters.AddWithValue("@Pago", "0");
                     rows_modified = command.ExecuteNonQuery();
                 }
